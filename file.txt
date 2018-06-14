@@ -1,0 +1,22 @@
+if (saturation)
+		{
+			grafoCandidatos.orderBySaturation();
+
+			// Calcula o criterio que que vai definir a RCL
+			// Formula = alpha * (maiorSaturacao + menorSaturacao)
+			int a = ceil(grafoCandidatos.getNodes()[0]->getSaturation() + grafoCandidatos.getNodes()[grafoCandidatos.getNodes().size() - 1]->getSaturation()) * alfa;
+
+			// Cria uma Lista Restrita de Candidatos
+			// Essa lista apresenta os "melhores" v�rtices candidatos para melhorar o problema
+			std::vector<Node *> LRC;
+			for (auto cInicial : grafoCandidatos.getNodes())
+			{
+				// Adiciona � LRC todos os v�rtices com satura��o maior que A
+				if (cInicial->getSaturation() >= a)
+				{
+					LRC.push_back(cInicial);
+				}
+			}
+			// Define o indice aleatorio com base na LRC
+			rndIndex = rand() % LRC.size();
+		}
